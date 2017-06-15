@@ -1,0 +1,1 @@
+$(".header-button").on("click", () => $(window.opera ? 'html' : 'html, body').animate({scrollTop: 0}, 'slow'));
