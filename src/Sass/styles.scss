@@ -114,15 +114,11 @@
       -ms-align-self: $align;
           align-self: $align;
 }
-@mixin linearGradient($top, $bottom){
-  background: $top; /* Old browsers */
-  background: -moz-linear-gradient(top,  $top 0%, $bottom 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top), color-stop(100%,$bottom)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  $top 0%,$bottom 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  $top 0%,$bottom 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  $top 0%,$bottom 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  $top 0%,$bottom 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+@mixin linear-gradient($args...) {
+  background-image: -o-linear-gradient($args); 
+  background-image: -moz-linear-gradient($args); 
+  background-image: -webkit-linear-gradient($args); 
+  background-image: linear-gradient($args);
 }
 @mixin transition($property) {
   -moz-transition: $property; 
@@ -143,37 +139,35 @@
 }
 
 @font-face {
-  font-family: Quattrocento;
-  src: url("fonts/Quattrocento-Regular.ttf");
+  font-family: FjallaOne;
+  src: url("fonts/FjallaOne-Regular.ttf");
 }
 @font-face {
-  font-family: Quattrocento;
-  font-weight: bold;
-  src: url("fonts/Quattrocento-Bold.ttf");
+  font-family: Average;
+  src: url("fonts/Average-Regular.ttf");
 }
 @font-face {
-  font-family: FanwoodText;
-  src: url("fonts/FanwoodText-Regular.ttf");
+  font-family: IstokWeb;
+  src: url("fonts/IstokWeb-Regular.ttf");
 }
 @font-face {
-  font-family: FanwoodText;
-  font-style: italic;
-  src: url("fonts/FanwoodText-Italic.ttf");
+  font-family: Lora;
+  src: url("fonts/Lora-Regular.ttf");
 }
 html,
 body {
+  background-color:rgba(#04aae8, 0.5);
   color: black;
-  font-family: FanwoodText;
-  font-size: 12px;
+  font-family: Lora;
+  font-size: 16px;
   padding: 0;
   margin: 0;
 }
 .header,
 .nav,
-.about,
-.skills {
-  background: #f6f6f6;
-  padding: 1rem;
+.about {
+  background: white;
+  padding: 0.5rem;
   margin-bottom: 1rem;
 }
 .header,
@@ -186,10 +180,10 @@ body {
   padding: 0;
 }
 .header-link-img {
-  @include linearGradient(#04aae8, #015f9f);
-  width: 7rem;
+  @include linear-gradient(#04aae8, #015f9f);
+  width: 5rem;
   z-index: 200;
-  padding: 2rem 4rem;
+  padding: 1rem 3rem;
   box-shadow: 0 1rem 1rem rgba(black, 0.4);
   margin: 2rem;
   position: relative;
@@ -197,14 +191,14 @@ body {
 .nav {
   @include align-items(center);
   z-index: 100;
-  margin: 1rem;
-  margin-bottom: 40vw;
+  margin: 1rem 0;
+  margin-bottom: 50vh;
   position: relative;
 }
 .nav-link {
   color: #2b2b2b;
-  font-family: Quattrocento;
-  font-size: 1.8rem;
+  font-family: FjallaOne;
+  font-size: 1.3rem;
   text-transform: uppercase;
   text-decoration: none;
   padding: 1rem;
@@ -219,41 +213,86 @@ body {
   font-weight: bold;
   text-align: center;
   text-shadow: 0 0.2rem 0.1rem black;
-  @include linearGradient(#04aae8, #015f9f);
-  margin: 8rem 0;
+  @include linear-gradient(#04aae8, #015f9f);
+  margin: 4rem 0;
 }
 .about,
-.skills {
-  margin: 1rem;
+.skills,
+.portfolio,
+.contact {
+  @include display-flex();
+  @include flex-direction(column);
+  @include align-items(center);
+  padding: 1rem;
+  margin: 1rem 0;
 
   h1 {
-    font-family: Quattrocento;
-    text-indent: 2rem;
+    font-family: IstokWeb;
+    font-size: 2rem;
+  }
+  h2 {
+    font-family: IstokWeb;
+    font-size: 1rem;
+  }
+  img {
+    margin-top: 2rem;
   }
   p {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     text-align: justify;
-    text-indent: 4rem;
+    text-indent: 2rem;
+    margin: 2rem 0;
   }
 }
-.skills-container {
+.about,
+.portfolio {
+  h1,
+  h2,
+  p {
+    color: #015f9f;
+  }
+  hr {
+    border: 0.01rem solid #015f9f;
+  }
+}
+.skills,
+.contact {
+  h1,
+  h2,
+  p, {
+    color: white;
+  }
+  hr {
+    width: 80%;;
+    border: 0.01rem solid white;
+  }
+}
+.about-heading,
+.skills-heading,
+.contact-info {
+  @include display-flex();
+  @include flex-direction(column);
+  @include align-items(center);
+}
+.skills-container,
+.portfolio-container {
   @include display-flex();
   @include flex-flow(row wrap);
   @include justify-content(center);
-  margin: 5rem auto;
+  margin: 5rem 0;
 }
 .skill-item {
   @include display-flex();
   @include justify-content(flex-end);
   @include align-items(flex-end);
-  height: 6rem;
-  width: 6rem;
+  height: 6.5rem;
+  width: 6.5rem;
   background: #04aae8;
   text-align: center;
   overflow: hidden;
   padding: 0;
   border-radius: 1rem;
-  border: 1px solid white;
+  border: 0.01rem solid white;
   box-shadow: 0.3rem 0 2rem rgba(black, 0.3);
   margin: 0.3rem;
   position: relative;
@@ -261,8 +300,8 @@ body {
 
   i {
     display: block;
-    width: 4.5rem;
-    height: 5rem;
+    width: 5.5rem;
+    height: 5.5rem;
     color: white;
     font-size: 3rem;
     text-shadow: 0 0.4rem 0.1rem #015f9f, 0 -0.2rem 0.1rem #015f9f;
@@ -275,10 +314,10 @@ body {
   .skill-item-text {
     display: block;
     width: 5rem;
-    height: 3.5rem;
+    height: 4.5rem;
     color: white;
-    font-family: Quattrocento;
-    font-size: 1rem;
+    font-family: FjallaOne;
+    font-size: 1.2rem;
     font-weight: bold;
     text-shadow: 0 0.2rem 0.1rem #015f9f, 0 -0.2rem 0.1rem #015f9f;
     text-transform: uppercase;
@@ -299,6 +338,73 @@ body {
     @include transition(all 0.5s);
   }
 }
+.portfolio {
+  background: white;
+}
+.portfolio-item {
+  @include display-flex();
+  @include justify-content(flex-start);
+  @include align-items(center);
+  @include box-sizing(border-box);
+  width: 13rem;
+  height: 13rem;
+  background: white;
+  overflow: hidden;
+  border: 1px solid #04aae8 - 20;
+  border-radius: 1rem;
+  margin: 1rem;
+  position: relative;
+  @include transition(all 0.5s);
+
+  a {
+    width: 13rem;
+    position: absolute;
+    @include transform(translateY(-1rem) scale(2.5));
+    @include transition(all 0.5s);
+  }
+  img {
+    width: 100%;
+  }
+  p {
+    color: white;
+    font-weight: bold;
+    text-align: left;
+    text-indent: 0;
+    text-transform: uppercase;
+    position: absolute;
+    @include transform(translateY(20rem));
+    @include transition(all 0.5s);
+  }
+}
+.portfolio-item:hover {
+  background: #04aae8;
+  z-index: 100;
+  @include transform(rotate(360deg) scale(1.5));
+
+  a {
+    @include transform(translate(-20rem));
+  }
+  p {
+    @include transform(translateY(-4rem) scale(0.75));
+  }
+}
+.contact {
+  p {
+    display: block;
+    margin: 0 auto;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+
+    li {
+      display: inline-block;
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
 
 @media only screen and (min-aspect-ratio: 12/9) {
   .header-link-img {
@@ -311,22 +417,29 @@ body {
 @media only screen and (min-width: 750px) {
   html,
   body {
-    background: url("images/background.jpg");
+    background-image: url("images/background.jpg");
     background-position: center 45rem;
     background-repeat: no-repeat;
     background-size: 100%;
-    background-position: center 3rem;
+    background-position: center 0.5rem;
   }
   .header {
-    height: 2rem;
-    border-top: 1rem solid #04aae8;
+    height: 0;
+    border-top: 0.5rem solid #04aae8;
   }
   .header-link-img {
     margin-top: 0;
   }
+  .nav,
+  .about,
+  .skills,
+  .portfolio,
+  .contact {
+    margin: 1rem;
+  }
   .nav {
     @include justify-content(center);
-    margin-bottom: 30vw;
+    margin-bottom: 25vw;
   }
   .nav-link {
     padding: 0;
@@ -355,25 +468,57 @@ body {
     @include flex(2);
     margin: 0 2rem;
   }
-  .skills-container {
-    width: 75%;
+  .contact-info {
+    @include flex-direction(row);
+    @include justify-content(space-between);
   }
 }
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 1000px) {
+  .about,
+  .skills,
+  .portfolio,
+  .contact {
+    padding: 2rem 10rem;
+  }
+}
+@media only screen and (min-width: 1300px) {
   html,
   body {
-    font-size: 16px;
+    font-size: 18px;
+  }
+  .about,
+  .skills {
+    @include flex-direction(row);
+    @include justify-content(space-between);
+
+    h1 {
+      text-indent: 2rem;
+    }
+    p {
+      margin: 10rem 0;
+    }
+  }
+  .about-heading,
+  .skills-heading {
+    @include flex(1);
+    @include align-items(flex-start);
+    @include align-self(flex-start);
+  }
+  .about p,
+  .skills .skills-container {
+    @include flex(2);
+    margin-left: 1rem;
   }
 }
 @media only screen and (min-width: 2000px) {
   html,
   body {
-    font-size: 32px;
+    font-size: 24px;
   }
 }
 @media only screen and (min-width: 3000px) {
   html,
   body {
-    font-size: 48px;
+    font-size: 36px;
   }
 }
