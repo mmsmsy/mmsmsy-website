@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Personal website with projects",
   "main": "src/main.js",
+  "scripts": {
+    "start": "webpack-dev-server --host 192.168.0.45 --entry ./src/main.js --output-filename ./build/bundle.js",
+    "build": "webpack"
+  },
   "author": "mmsmsy",
   "license": "MIT",
   "devDependencies": {

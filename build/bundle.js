@@ -10333,8 +10333,31 @@ return jQuery;
 "use strict";
 /* WEBPACK VAR INJECTION */(function($) {
 
-$(".header-button").on("click", function () {
-  return $(window.opera ? 'html' : 'html, body').animate({ scrollTop: 0 }, 'slow');
+$('.contact-logo').on('click', function () {
+    return $(window.opera ? 'html' : 'html, body').animate({ scrollTop: 0 }, 'slow');
+});
+$('.link-start').on('click', function () {
+    return $(window.opera ? 'html' : 'html, body').animate({ scrollTop: $('.about').offset().top }, 'slow');
+});
+$('.nav-link-skills').on('click', function () {
+    return $(window.opera ? 'html' : 'html, body').animate({ scrollTop: $('.skills').offset().top }, 'slow');
+});
+$('.nav-link-portfolio').on('click', function () {
+    return $(window.opera ? 'html' : 'html, body').animate({ scrollTop: $('.portfolio').offset().top }, 'slow');
+});
+$('.nav-link-contact').on('click', function () {
+    return $(window.opera ? 'html' : 'html, body').animate({ scrollTop: $('.contact').offset().top }, 'slow');
+});
+
+var nav = $('.nav-fixed');
+
+$(window).scroll(function () {
+    if ($(this).scrollTop() > $(window).height() && nav.css('display') == 'none') {
+        nav.css('display', 'flex').hide().slideDown('slow');
+    }
+    if ($(this).scrollTop() < $(window).height()) {
+        nav.fadeOut('slow');
+    }
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
