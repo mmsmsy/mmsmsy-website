@@ -1,16 +1,22 @@
-$('.nav-link-top').on('click', () => $(window.opera ? 'html' : 'html, body').animate({scrollTop: 0}, 'slow'));
-$('.link-start').on('click', () => $(window.opera ? 'html' : 'html, body').animate({scrollTop: $('.about').offset().top - 50},'slow'));
-$('.nav-link-skills').on('click', () => $(window.opera ? 'html' : 'html, body').animate({scrollTop: $('.skills').offset().top - 50},'slow'));
-$('.nav-link-portfolio').on('click', () => $(window.opera ? 'html' : 'html, body').animate({scrollTop: $('.portfolio').offset().top - 50},'slow'));
-$('.nav-link-contact').on('click', () => $(window.opera ? 'html' : 'html, body').animate({scrollTop: $('.contact').offset().top - 50},'slow'));
+const addClickToNav = (element) => {
+  $(window.opera ? 'html' : 'html, body').animate({scrollTop: $(element).offset().top - 50}, 1000);
+}
 
-$(window).scroll(function () {
+$('.nav-link-top').on('click', () => $(window.opera ? 'html' : 'html, body').animate({scrollTop: 0}, 1000));
+$('.link-start').on('click', () => addClickToNav('.about'));
+$('.nav-link-skills').on('click', () => addClickToNav('.skills'));
+$('.nav-link-portfolio').on('click', () => addClickToNav('.portfolio'));
+$('.nav-link-contact').on('click', () => addClickToNav('.contact'));
+
+$(window).scroll(function() {
     if ($(this).scrollTop() > $('.nav').offset().top + $('.nav').height() + 50 && $('.nav-fixed').css('display') == 'none') {
-        $('.nav-fixed').css('display', 'flex')
-          .hide()
-          .slideDown();
+      $('.nav-fixed')
+        .css('display', 'flex')
+        .hide()
+        .slideDown();
     }
-    if ($(this).scrollTop() < $('.nav').offset().top + $('.nav').height() + 50) {
+    else if ($(this).scrollTop() < $('.nav').offset().top + $('.nav').height() + 50) {
+        console.log("Should hide the nav2222");
         $('.nav-fixed').slideUp();
     }
 });

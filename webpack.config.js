@@ -16,7 +16,6 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery'
     }),
-    /*
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
@@ -24,7 +23,7 @@ module.exports = {
       output: {
         comments: false,
       },
-    }),*/
+    }),
   ],
   stats: {
     colors: true
